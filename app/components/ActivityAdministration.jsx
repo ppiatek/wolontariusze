@@ -82,9 +82,8 @@ var ActivityAdministration = React.createClass({
   },
 
   handleStartEventTimestampChange: function (m) {
-    //http://stackoverflow.com/questions/18022534/moment-js-and-unix-epoch-conversion
     this.setState(update(this.state, {
-      activity: {startEventTimestamp: {$set: m.toDate().getTime()}}
+      activity: {datetime: {$set: m}}
     }))
   },
 
@@ -212,7 +211,7 @@ var ActivityAdministration = React.createClass({
   },
 
   render: function() {
-    var startEventDate = new Date(this.state.activity.startEventTimestamp)
+    var startEventDate = new Date(this.state.activity.datetime)
     var startEventDateHint
     if (this.props.taskMode) {
       startEventDateHint = <span> Dla zadania data powinna być w przyszłości </span>
@@ -243,8 +242,10 @@ var ActivityAdministration = React.createClass({
     var removeActiveVolonteer = this.removeActiveVolonteer
     var addVolonteer
     if (this.state.volunteers.length < this.state.activity.maxVolunteers) {
-      addVolonteer = <ActivityVolonteersList addActiveVolonteer={this.addActiveVolonteer}
-                                             excludedVolunteers={this.state.volunteers}/>
+        addVolonteer = <ActivityVolonteersList
+            id="activeVolonteers"
+            addActiveVolonteer={this.addActiveVolonteer}
+            excludedVolunteers={this.state.volunteers} />
     }
     var volunteers = this.state.volunteers || []
     var list = volunteers.map(function(volunteer) {

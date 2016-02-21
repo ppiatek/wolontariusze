@@ -32,7 +32,7 @@ var ProfileSettings = React.createClass({
 
   render: function() {
   
-    var errorMessage = this.props.context.getStore(ApplicationStore).getFailureMessage()
+    var errorMessage = this.props.context.getStore(ApplicationStore).getFailure()
     errorMessage = (("" !== errorMessage) ? (<div class="message-error">{errorMessage}</div>) : "")  
     
   

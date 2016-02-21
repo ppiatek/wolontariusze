@@ -15,7 +15,7 @@ var ActivityStore = createStore({
   initialize: function () {
     this.activity = {
       name: '',
-      startEventTimestamp: '',
+      datetime: '',
       duration: '',
       place: '',
       description: '',
@@ -90,14 +90,15 @@ ActivityStore.attributes = function() {
     'description',
     'created_at',
     'updated_at',
-    'startEventTimestamp',
+    'datetime',
     'duration',
     'place',
     'is_urgent',
     'creator',
     'editor',
     'maxVolunteers',
-    'volunteers'
+    'volunteers',
+    'lat_lon'
   ]
 }
 
